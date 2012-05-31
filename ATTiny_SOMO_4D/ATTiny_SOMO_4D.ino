@@ -6,7 +6,10 @@
 #include <avr/wdt.h>         // Watchdog timer handling
 
 unsigned int sound[] = {
-  0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005, 0x0006, 0x0007
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+  10, 11, 12, 13, 14, 15,
+  16, 17, 18, 
+
 };
 
 unsigned int volume[] = {
@@ -19,7 +22,7 @@ const int resetPin = 2;           // ATTiny analog 1 to SOMO-4D reset pin
 const int volumePin = 4;          // ATTiny analog 2 as input to trigger SOMO-4D volume
 const int sensorPin = 3;          // ATTiny analog 3 to sens potentiometer scarf
 const int DEBOUNCETIME = 16;      // debounce to avoid double playing instructions
-const int THRESHOLD_SENS = 25;    // threshold for analog input sensing
+const int THRESHOLD_SENS = 35;    // threshold for analog input sensing
 const int INACTIVETIME = 500;     // time before sleeping mode
 const int THRESHOLD_SWITCH = 100; //
 
@@ -55,7 +58,8 @@ void setup(){
 
   //////////////////////////////////////// initialize watchdog timer
   sendData(volume[curentVolume]);          // set SOMO-4D volume
-  WDT_Init();                  
+  WDT_Init();
+  somoReset();  
 }
 
 /////////////////////// boucle principale
@@ -63,7 +67,7 @@ void loop(){
 
   curentMillis = millis();
 
-  if((curentMillis - lastMillis) >= DEBOUNCETIME){  // slow down analog readings
+  //if((curentMillis - lastMillis) >= DEBOUNCETIME){  // slow down analog readings
 
     lastMillis = curentMillis;
     curentInactiveTime = (curentMillis - lastPlayingTime);
@@ -85,12 +89,12 @@ void loop(){
       lastPlayingTime = curentMillis;
       toggle = false;                  // play only one sound
       // sendData( sound[random(7)] );
-      sendData( sound[pos++ % 7] );
+      sendData(int(pos++ % 36));
     }
     if(toggle == false && derivee < THRESHOLD_SENS){
       toggle = true;
     }
-  }
+  //}
 }
 
 ///////////////////////////////////////// fonctions
@@ -177,4 +181,5 @@ void somoLowPower(){
   delay(130);
   digitalWrite(resetPin, HIGH);
 }
+
 
