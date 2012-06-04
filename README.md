@@ -17,7 +17,7 @@ This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) int
 	BUSY - 5 	      10 - RESET
    STOP/PLAY - 6	       9 - GND
     PREVIOUS - 7	       8 - VCC
- 
+
 /////// SOMO-4D commands
 	0000h – 01FFh - AUDIO FILE ADDRESS
 	FFF0h – FFF7h - VOLUME
@@ -25,5 +25,5 @@ This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) int
 	FFFFh - STOP (power idle mode)
 
 Selecting sample is based on derived sensor value
-The Arduino sketch implement sleep mode to reduce power consumption.
-Visit the following link to programme ATTiny with Arduino : http://hlt.media.mit.edu/?p=1229
+The Arduino sketch implement sleep mode to reduce power consumption
+The following link present à metod for programming ATTiny with Arduino: http://hlt.media.mit.edu/?p=1229

@@ -5,13 +5,6 @@
 #include <avr/sleep.h>
 #include <avr/wdt.h>         // Watchdog timer handling
 
-unsigned int sound[] = {
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-  10, 11, 12, 13, 14, 15,
-  16, 17, 18, 
-
-};
-
 unsigned int volume[] = {
   0xfff0, 0xfff1, 0xfff2, 0xfff3, 0xfff4, 0xfff5, 0xfff6, 0xfff7
 };
@@ -21,13 +14,12 @@ const int dataPin = 1;            // SOMO-4D data pin
 const int resetPin = 2;           // ATTiny analog 1 to SOMO-4D reset pin
 const int volumePin = 4;          // ATTiny analog 2 as input to trigger SOMO-4D volume
 const int sensorPin = 3;          // ATTiny analog 3 to sens potentiometer scarf
-const int DEBOUNCETIME = 16;      // debounce to avoid double playing instructions
+const int DEBOUNCETIME = 100;      // debounce to avoid double playing instructions
 const int THRESHOLD_SENS = 35;    // threshold for analog input sensing
 const int INACTIVETIME = 500;     // time before sleeping mode
 const int THRESHOLD_SWITCH = 100; //
 
 unsigned long curentMillis = 0;
-unsigned long lastMillis = 0;
 unsigned long lastPlayingTime = 0;
 unsigned long curentInactiveTime = 0;
 
@@ -67,34 +59,29 @@ void loop(){
 
   curentMillis = millis();
 
-  //if((curentMillis - lastMillis) >= DEBOUNCETIME){  // slow down analog readings
+  if((curentMillis - lastPlayingTime) >= DEBOUNCETIME){
 
-    lastMillis = curentMillis;
-    curentInactiveTime = (curentMillis - lastPlayingTime);
-
-    rowSensorVal = analogRead(sensorPin);
-    derivee = rowSensorVal - lastRowSensorVal;
-    lastRowSensorVal = rowSensorVal;
-
-    if(derivee < THRESHOLD_SENS && curentInactiveTime >= INACTIVETIME){
+    if((curentMillis - lastPlayingTime) >= INACTIVETIME && derivee < THRESHOLD_SENS){
       somoLowPower();
       enable_wdt();
       sleepNow();
       disable_wdt();
-      lastMillis = millis();
-      lastPlayingTime = millis();
     }
+    
+    rowSensorVal = analogRead(sensorPin);
+    derivee = rowSensorVal - lastRowSensorVal;
+    lastRowSensorVal = rowSensorVal;
 
     if(toggle == true && derivee >= THRESHOLD_SENS){
       lastPlayingTime = curentMillis;
-      toggle = false;                  // play only one sound
-      // sendData( sound[random(7)] );
+      toggle = false;                  // toggel only one time
+      // sendData(sound[random(7)]);
       sendData(int(pos++ % 36));
     }
     if(toggle == false && derivee < THRESHOLD_SENS){
       toggle = true;
     }
-  //}
+  }
 }
 
 ///////////////////////////////////////// fonctions
@@ -129,12 +116,8 @@ void enable_wdt(void){
 /////////////////////// Set ATTiny WDT OFF
 void disable_wdt(void){
   cli();
-  // wdt_reset();
-  // WDTCR |= (1 << WDIE);                  // WDIE must be set after each interrupt to avoid the watchdog reset
-  // MCUCR &= ~(1 << WDRF);                 // WDRF must be cleared before WDE can be cleared 
   MCUSR = 0;                                // Clear WDRF in MCUSR
   WDTCR |= (1 << WDCE) | (1 << WDE);        // enable WDT 4 cycle timer operation bit 
-  // WDTCR &= ~(1 << WDIE);                 // disable WDT interrupt
   WDTCR = 0x00; // Turn off WDT 
   sei();
 }
@@ -181,5 +164,7 @@ void somoLowPower(){
   delay(130);
   digitalWrite(resetPin, HIGH);
 }
+
+
 
 

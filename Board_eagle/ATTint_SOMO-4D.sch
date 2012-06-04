@@ -4339,6 +4339,8 @@ This library allows the mounting of the SOMO-14D to a circuit board, either via 
 <part name="X3" library="SparkFun" deviceset="USB" device="-SMD-NS"/>
 <part name="AUDIO1" library="SparkFun" deviceset="M02" device="LOCK_LONGPADS" value="3.3V"/>
 <part name="SWITCH1" library="SparkFun" deviceset="SWITCH-MOMENTARY-2" device="SMD"/>
+<part name="R1" library="spark-fun" deviceset="RESISTOR" device="" value="1K"/>
+<part name="P+4" library="supply1" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4377,6 +4379,8 @@ This library allows the mounting of the SOMO-14D to a circuit board, either via 
 <instance part="X3" gate="G$1" x="-104.14" y="68.58" rot="R180"/>
 <instance part="AUDIO1" gate="G$1" x="73.66" y="73.66" rot="R180"/>
 <instance part="SWITCH1" gate="G$1" x="83.82" y="-25.4" rot="R180"/>
+<instance part="R1" gate="G$1" x="73.66" y="0" rot="R270"/>
+<instance part="P+4" gate="VCC" x="73.66" y="12.7"/>
 </instances>
 <busses>
 </busses>
@@ -4411,6 +4415,11 @@ This library allows the mounting of the SOMO-14D to a circuit board, either via 
 <pinref part="U1" gate="SOMO-14D" pin="VCC"/>
 <wire x1="48.26" y1="50.8" x2="22.86" y2="50.8" width="0.1524" layer="91"/>
 <junction x="22.86" y="50.8"/>
+</segment>
+<segment>
+<pinref part="R1" gate="G$1" pin="1"/>
+<pinref part="P+4" gate="VCC" pin="VCC"/>
+<wire x1="73.66" y1="5.08" x2="73.66" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="2">
@@ -4495,15 +4504,15 @@ This library allows the mounting of the SOMO-14D to a circuit board, either via 
 </net>
 <net name="CLOCK" class="0">
 <segment>
-<wire x1="22.86" y1="-20.32" x2="38.1" y2="-20.32" width="0.1524" layer="91"/>
-<label x="38.1" y="-20.32" size="1.778" layer="95"/>
-<pinref part="U$6" gate="G$1" pin="PB0(MOSI)"/>
-</segment>
-<segment>
 <pinref part="U1" gate="SOMO-14D" pin="CLK"/>
 <wire x1="-7.62" y1="60.96" x2="-15.24" y2="60.96" width="0.1524" layer="91"/>
 <label x="-22.86" y="60.96" size="1.778" layer="95"/>
 <junction x="-7.62" y="60.96"/>
+</segment>
+<segment>
+<pinref part="U$6" gate="G$1" pin="PB1(MISO)"/>
+<wire x1="22.86" y1="-22.86" x2="38.1" y2="-22.86" width="0.1524" layer="91"/>
+<label x="38.1" y="-22.86" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$6" class="0">
@@ -4581,15 +4590,15 @@ This library allows the mounting of the SOMO-14D to a circuit board, either via 
 </net>
 <net name="DATA" class="0">
 <segment>
-<pinref part="U$6" gate="G$1" pin="PB1(MISO)"/>
-<wire x1="22.86" y1="-22.86" x2="38.1" y2="-22.86" width="0.1524" layer="91"/>
-<label x="38.1" y="-22.86" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="U1" gate="SOMO-14D" pin="DATA"/>
 <wire x1="-7.62" y1="58.42" x2="-15.24" y2="58.42" width="0.1524" layer="91"/>
 <label x="-22.86" y="58.42" size="1.778" layer="95"/>
 <junction x="-7.62" y="58.42"/>
+</segment>
+<segment>
+<pinref part="U$6" gate="G$1" pin="PB2(SCK/ADC1)"/>
+<wire x1="22.86" y1="-25.4" x2="38.1" y2="-25.4" width="0.1524" layer="91"/>
+<label x="38.1" y="-25.4" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SENSOR" class="0">
@@ -4610,10 +4619,14 @@ This library allows the mounting of the SOMO-14D to a circuit board, either via 
 </net>
 <net name="SWITCH" class="0">
 <segment>
-<wire x1="81.28" y1="-10.16" x2="76.2" y2="-10.16" width="0.1524" layer="91"/>
-<label x="66.04" y="-10.16" size="1.778" layer="95"/>
+<wire x1="81.28" y1="-10.16" x2="73.66" y2="-10.16" width="0.1524" layer="91"/>
+<label x="53.34" y="-10.16" size="1.778" layer="95"/>
 <pinref part="SWITCH" gate="G$1" pin="1"/>
 <junction x="81.28" y="-10.16"/>
+<pinref part="R1" gate="G$1" pin="2"/>
+<wire x1="73.66" y1="-10.16" x2="63.5" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="-5.08" x2="73.66" y2="-10.16" width="0.1524" layer="91"/>
+<junction x="73.66" y="-10.16"/>
 </segment>
 <segment>
 <pinref part="U$6" gate="G$1" pin="PB4(ADC2)"/>
@@ -4628,9 +4641,9 @@ This library allows the mounting of the SOMO-14D to a circuit board, either via 
 <label x="35.56" y="55.88" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$6" gate="G$1" pin="PB2(SCK/ADC1)"/>
-<wire x1="22.86" y1="-25.4" x2="38.1" y2="-25.4" width="0.1524" layer="91"/>
-<label x="38.1" y="-25.4" size="1.778" layer="95"/>
+<wire x1="22.86" y1="-20.32" x2="38.1" y2="-20.32" width="0.1524" layer="91"/>
+<label x="38.1" y="-20.32" size="1.778" layer="95"/>
+<pinref part="U$6" gate="G$1" pin="PB0(MOSI)"/>
 </segment>
 </net>
 <net name="AUDIO_A" class="0">
