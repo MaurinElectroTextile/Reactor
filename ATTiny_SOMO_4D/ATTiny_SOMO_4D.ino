@@ -27,6 +27,8 @@ unsigned int rowSensorVal = 0;
 unsigned int lastRowSensorVal = 0;
 int derivee = 0;
 boolean toggle = false;
+boolean toggelsomoLowPower = true;
+
 
 boolean volumeSwitch = 0;
 boolean toggelSwitch = true;
@@ -51,7 +53,7 @@ void setup(){
   //////////////////////////////////////// initialize watchdog timer
   sendData(volume[curentVolume]);          // set SOMO-4D volume
   WDT_Init();
-  somoReset();  
+  somoReset();
 }
 
 /////////////////////// boucle principale
@@ -62,18 +64,23 @@ void loop(){
   if((curentMillis - lastPlayingTime) >= DEBOUNCETIME){
 
     if((curentMillis - lastPlayingTime) >= INACTIVETIME && derivee < THRESHOLD_SENS){
-      somoLowPower();
+      
+      if(toggelsomoLowPower) somoLowPower();
+      toggelsomoLowPower = false;
+
       enable_wdt();
       sleepNow();
       disable_wdt();
     }
-    
+
     rowSensorVal = analogRead(sensorPin);
     derivee = rowSensorVal - lastRowSensorVal;
     lastRowSensorVal = rowSensorVal;
 
     if(toggle == true && derivee >= THRESHOLD_SENS){
       lastPlayingTime = curentMillis;
+      toggelsomoLowPower = true;
+      
       toggle = false;                  // toggel only one time
       // sendData(sound[random(7)]);
       sendData(int(pos++ % 36));
@@ -89,6 +96,7 @@ void loop(){
 /////////////////////// Watchdog Interrupt Service Routine
 // EMPTY_INTERRUPT(WDT_vect);
 ISR(WDT_vect){  // go back to the main loop when we get an interrupt from the watchdog timer
+  toggle = true;
 }
 
 /////////////////////// Init ATTiny WDT
@@ -116,9 +124,9 @@ void enable_wdt(void){
 /////////////////////// Set ATTiny WDT OFF
 void disable_wdt(void){
   cli();
-  MCUSR = 0;                                // Clear WDRF in MCUSR
-  WDTCR |= (1 << WDCE) | (1 << WDE);        // enable WDT 4 cycle timer operation bit 
-  WDTCR = 0x00; // Turn off WDT 
+  MCUSR = 0;                              // Clear WDRF in MCUSR
+  WDTCR |= (1 << WDCE) | (1 << WDE);      // enable WDT 4 cycle timer operation bit 
+  WDTCR = 0x00;                           // Turn off WDT 
   sei();
 }
 
@@ -158,12 +166,15 @@ void somoReset(){
   digitalWrite(resetPin, HIGH);
 }
 
-/////////////////////// Reset SOMO-4D
+/////////////////////// SOMO-4D low power mode
+// Stops playing the current audio file and puts the module in the ow power idle mode.
 void somoLowPower(){
-  digitalWrite(resetPin, LOW);
-  delay(130);
-  digitalWrite(resetPin, HIGH);
+  sendData(0xFFFF);
+  // digitalWrite(resetPin, LOW);
+  // delay(130);
+  // digitalWrite(resetPin, HIGH);
 }
+
 
 
 
