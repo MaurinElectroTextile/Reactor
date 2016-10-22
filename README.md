@@ -19,7 +19,7 @@ Le stress exercé sur le tricot est générateur d’un son qui varie en relatio
 Dans ce dernier scénario le son sera généré par un téléphone portable assisté d’un mini système son. Ce téléphone sera aussi équipé d’une application musicale contrôlée par le vêtement. Pour réaliser un premier prototype nous avons choisi de travailler avec le système Android et donc d’aborder le développement d’une application en Java...
 
 
-
+## Technical Solutions 
 This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) into an stand alone audio player electronic board made for a knitted fabric sensor.
 
 ##ATTiny85 pin mapping
@@ -50,5 +50,6 @@ This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) int
 The following link present à metod to programe ATTiny with Arduino: http://hlt.media.mit.edu/?p=1229
 
 ##TODO
+- Translate the text project
 - Replace the SOMO with less expensive module
  - Teensy LC could be a good solution
