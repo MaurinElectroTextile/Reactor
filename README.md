@@ -1,4 +1,4 @@
-#ElectroTextile
+#Reactor
 
 This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) into an stand alone audio player electronic board made for a knitted fabric sensor.
 
