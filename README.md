@@ -20,13 +20,13 @@ Dans ce dernier scénario le son sera généré par un téléphone portable assi
 
 
 ## Technical Solutions 
-This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) into an stand alone audio player electronic board made for a knitted fabric sensor.
+This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) into an stand alone audio player electronic board made for a knitted fabric sensor. [This tutoriel explain how to program ATTiny with Arduino](http://hlt.media.mit.edu/?p=1229)
 
 ##ATTiny85 pin mapping
-	(PCINT5/RESET/ADC0/dW)		PB5 -	 - vcc
+	(PCINT5/RESET/ADC0/dW)			PB5 -	 - vcc
 	(PCINT3/XTAL1/CLKI/OC1B/ADC3)	PB3 -	 - PB2 (SCK/USCK/SCL/ADC1/T0/INT0/PCINT2)
 	(PCINT4/XTAL2/CLKO/OC1B/ADC2)	PB4 -	 - PB1 (MISO/DO/AIN1/OC0B/OC1A/PCINT1)
-					GND -	 - PB0 (MOSI/DI/SDA/AIN0/OC0A/OC1A/AREF/PCINT0)
+						GND -	 - PB0 (MOSI/DI/SDA/AIN0/OC0A/OC1A/AREF/PCINT0)
 
 ##SOMO-4D pin mapping
 	NEXT - 1	      14 - AUDIO
@@ -46,8 +46,6 @@ This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) int
 ##The firmware
 - triggering samples is based on derived sensor value
 - The Arduino sketch implement sleep mode to reduce power consumption
-
-The following link present à metod to programe ATTiny with Arduino: http://hlt.media.mit.edu/?p=1229
 
 ##TODO
 - Translate the text project
