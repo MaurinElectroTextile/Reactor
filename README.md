@@ -16,35 +16,15 @@ Le stress exercé sur le tricot est générateur d’un son qui varie en relatio
 ###Scénario N°4 : le son polyphonique
 Dans ce dernier scénario le son sera généré par un téléphone portable assisté d’un mini système son. Ce téléphone sera aussi équipé d’une application musicale contrôlée par le vêtement. Pour réaliser un premier prototype nous avons choisi de travailler avec le système Android et donc d’aborder le développement d’une application en Java...
 
-## Technical Solutions 
-This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) into an stand alone audio player electronic board made for a knitted fabric sensor. [This tutoriel explain how to program ATTiny with Arduino](http://hlt.media.mit.edu/?p=1229)
+##Electronic
+Pull on the knit cause resistor drop down. A voltage divider circuit is used to convert resistor variation into voltage value. This is done by adding a single 10K resistor. The derived sensor value is use to triggering samples.
+To reduce power consumption of the voltage divider, the circuit is supplied with an digital IO pin. This to allow on/off switching.The sketch also implementing sleep mode.
 
-##ATTiny85 pin mapping
-	(PCINT5/RESET/ADC0/dW)			PB5 -	 - vcc
-	(PCINT3/XTAL1/CLKI/OC1B/ADC3)	PB3 -	 - PB2 (SCK/USCK/SCL/ADC1/T0/INT0/PCINT2)
-	(PCINT4/XTAL2/CLKO/OC1B/ADC2)	PB4 -	 - PB1 (MISO/DO/AIN1/OC0B/OC1A/PCINT1)
-									GND -	 - PB0 (MOSI/DI/SDA/AIN0/OC0A/OC1A/AREF/PCINT0)
+![alt tag](https://farm9.staticflickr.com/8610/16594983667_a701634597_z_d.jpg)
 
-##SOMO-4D pin mapping
-	NEXT - 1	      14 - AUDIO
-	  NC - 2 	      13 - NC
-	 CLK - 3	      12 - SPK-
-	DATA - 4 	      11 - SPK+
-	BUSY - 5 	      10 - RESET
-   STOP/PLAY - 6	       9 - GND
-    PREVIOUS - 7	       8 - VCC
-
-##SOMO-4D commands
-- 0000h – 01FFh - AUDIO FILE ADDRESS
-- FFF0h – FFF7h - VOLUME
-- FFFEh - PLAY/PAUSE
-- FFFFh - STOP (power idle mode)
-
-##The firmware
-- triggering samples is based on derived sensor value
-- The Arduino sketch implement sleep mode to reduce power consumption
+The first prototype was using an ATTiny85 and a SOMO-4D (embedded audio-sound module) into an stand alone audio player electronic board made for a knitted fabric sensor. [This tutoriel explain how to program ATTiny with Arduino](http://hlt.media.mit.edu/?p=1229)
 
 ##TODO
-- Translate the text project
+- Translate in english the text project
 - Replace the SOMO with less expensive module
- - Teensy LC could be a good solution
+ - [Teensy could be a good solution](https://www.pjrc.com/teensy/teensy31.html)
