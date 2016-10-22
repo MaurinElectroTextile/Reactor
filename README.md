@@ -1,11 +1,7 @@
-#Reactor
+#Tricot reactor
 ###Musicals clothing made out of stretch knitted fabric sensor
 
-S’habiller avec des vêtements technologiques c’est stylé ! c’est un jeu comme le cosplay, une manière d’incarner son temps dans une mixité des influences passées, présentes et futures. Les vêtements interactifs et musicaux que nous imaginons pourraient s’inscrire dans une démarche artistique et performative mais nous avons simplement choisi de nous adresser à des personnes qui souhaitent porter ce qu’on pourrait appeler un parfum sonore.
-
-Le projet Reactor permet d’imaginer une multitude de modèles de vêtements instruments et articles sonores basés sur un principe de tricot capteur. Tricoté à la main à partir de fils de laine et de fils conducteurs, la maille permet ainsi de capter l’élongation, la tension du tissu ainsi que les plis et contacts de la matière pour déclencher ou contrôler des sons. Une attention particulière est portée à l’intégration du dispositif électronique qui disparaît totalement au profit d’une esthétique simple. Projet intergénérationnel, ce projet est aussi un prétexte pour organiser des ateliers avec des grand mères branchées qui pourront remettre le tricot au goût du jour.
-
-C’est aussi pour solliciter des gestes que le vêtement est augmenté d’un parfum sonore, rendu réactif grâce à l’intégration d’une petite carte électronique le tricot adopte un nouveau statut d’objet instrument, la fonction musicale du vêtement entraine alors l’apprentissage d’une gestuelle particulière.
+S’habiller avec des vêtements technologiques c’est stylé! c’est un jeu comme le cosplay, une manière d’incarner son temps dans la mixité des influences passées, présentes et futures. Les vêtements interactifs et musicaux que nous imaginons pourraient s’inscrire dans une démarche artistique et performative mais nous avons décidé de nous adresser à un public plus large. Augmenté d'un "parfum sonore" le tricot reacor est une sorte de vetement instrument. Rendu réactif grâce à l’intégration d’une petite carte électronique, le tricot Reactor permet d’imaginer une multitude de modèles de vêtements instruments. Tricoté à la main à partir de fils de laine et de fils conducteurs, la maille permet ainsi de capter l’élongation, la tension du tissu ainsi que les plis et contacts de la matière pour déclencher ou contrôler des sons. Une attention particulière est portée à l’intégration de l'électronique qui disparaît totalement au profit d’une esthétique simple. Intergénérationnel, ce projet est aussi un prétexte pour organiser des ateliers avec des grand mères branchées qui pourront remettre leur tricot au goût du jour.
 
 ###Scénario N°1 : suivi de partition
 A chaque fois que l’on bouge, presse ou plie le tricot, on "avance" d’une note dans une mélodie. Le rythme de cette mélodie correspond ainsi au rythme du mouvement de celui ou celle qui porte le vêtement et la composition fonctionne en boucle.
@@ -21,9 +17,9 @@ Pull on the knit cause resistor drop down. A voltage divider circuit is used to 
 
 ![alt tag](https://farm9.staticflickr.com/8610/16594983667_a701634597_z_d.jpg)
 
-The first prototype was using an ATTiny85 and a SOMO-4D (embedded audio-sound module) into an stand alone audio player electronic board made for a knitted fabric sensor. [This tutoriel explain how to program ATTiny with Arduino](http://hlt.media.mit.edu/?p=1229)
+The first prototype was using an ATTiny85 and a SOMO-4D (embedded audio-sound module) to build a small stand alone audio player. [This tutoriel explain how to program ATTiny with Arduino](http://hlt.media.mit.edu/?p=1229)
 
 ##TODO
-- Translate in english the text project
+- Translate the text project in english
 - Replace the SOMO with less expensive module
  - [Teensy could be a good solution](https://www.pjrc.com/teensy/teensy31.html)
