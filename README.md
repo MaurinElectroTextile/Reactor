@@ -17,8 +17,7 @@ Le stress exercé sur le tricot est générateur d’un son qui varie en relatio
 Dans ce dernier scénario le son sera généré par un téléphone portable assisté d’un mini système son. Ce téléphone sera aussi équipé d’une application musicale contrôlée par le vêtement. Pour réaliser un premier prototype nous avons choisi de travailler avec le système Android et donc d’aborder le développement d’une application en Java...
 
 ##Electronic
-Pull on the knit cause resistor drop down. A voltage divider circuit is used to convert resistor variation into voltage value. This is done by adding a single 10K resistor. The derived sensor value is use to triggering samples.
-To reduce power consumption of the voltage divider, the circuit is supplied with an digital IO pin. This to allow on/off switching.The sketch also implementing sleep mode.
+Pull on the knit cause resistor drop down. A voltage divider circuit is used to convert resistor variation into voltage value (Vs). This is done by adding a single 10K resistor. To reduce power consumption of the voltage divider, the circuit is supplied (VCC) with a digital IO pin. This to allow on/off switching.The sketch also implementing sleep mode.
 
 ![alt tag](https://farm9.staticflickr.com/8610/16594983667_a701634597_z_d.jpg)
 
