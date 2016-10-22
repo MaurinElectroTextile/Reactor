@@ -1,4 +1,5 @@
 #Reactor
+###Musicals clothing made out of stretch knitted fabric sensor
 
 S’habiller avec des vêtements technologiques c’est stylé ! c’est un jeu comme le cosplay, une manière d’incarner son temps dans une mixité des influences passées, présentes et futures. Les vêtements interactifs et musicaux que nous imaginons pourraient s’inscrire dans une démarche artistique et performative mais nous avons simplement choisi de nous adresser à des personnes qui souhaitent porter ce qu’on pourrait appeler un parfum sonore.
 
@@ -8,16 +9,12 @@ C’est aussi pour solliciter des gestes que le vêtement est augmenté d’un p
 
 ###Scénario N°1 : suivi de partition
 A chaque fois que l’on bouge, presse ou plie le tricot, on "avance" d’une note dans une mélodie. Le rythme de cette mélodie correspond ainsi au rythme du mouvement de celui ou celle qui porte le vêtement et la composition fonctionne en boucle.
-
 ###Scénario N°2 : aléatoire contrôlé
 Nous choisissons ici de distinguer plusieurs typologies de mouvement calme, en marche, excité, etc. Chacune de ces typologies est déterminée par la fréquence des mouvements captés. Plus on s’excite, plus les sons déclenchés sont aigus et distordus, à l’inverse, plus on est calme et plus les sons se réduisent à une sonorité simple.
-
 ###Scénario N°3 : le son extensible
 Le stress exercé sur le tricot est générateur d’un son qui varie en relation directe avec l’étirement de la matière, plus le tricot est tendu plus le son est aigu. L’onde sonore est générée par synthèse. Une carte électronique dédiée permet de programmer plusieurs types de sons qui se rapprochent des sons 8-bit. Cette orientation fera l’objet d’une mise au point ultérieure car vous avons souhaité privilégier dans un premier temps une solution qui utilise des samples.
-
 ###Scénario N°4 : le son polyphonique
 Dans ce dernier scénario le son sera généré par un téléphone portable assisté d’un mini système son. Ce téléphone sera aussi équipé d’une application musicale contrôlée par le vêtement. Pour réaliser un premier prototype nous avons choisi de travailler avec le système Android et donc d’aborder le développement d’une application en Java...
-
 
 ## Technical Solutions 
 This project is combining ATTiny85 and SOMO-4D (embedded audio-sound module) into an stand alone audio player electronic board made for a knitted fabric sensor. [This tutoriel explain how to program ATTiny with Arduino](http://hlt.media.mit.edu/?p=1229)
